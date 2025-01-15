@@ -29,6 +29,7 @@ public class WesterosHaus {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter an uppercase letter: ");
         char letter = scanner.next().charAt(0);
+        displayStudentsWithLetter(entries, letter);
     }
     static List<Entry> readFile(String fileName) throws IOException {
         List<Entry> entries = new ArrayList<>();
@@ -44,5 +45,10 @@ public class WesterosHaus {
         }
         return entries;
     }
-    
+    static void displayStudentsWithLetter(List<Entry> entries, char letter) {
+        System.out.println("Students whose names start with '" + letter + "':");
+        entries.stream()
+                .filter(entry -> entry.MitgliederName.startsWith(String.valueOf(letter)))
+                .forEach(entry -> System.out.println(entry.MitgliederName));
+    }
 }
